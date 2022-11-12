@@ -28,6 +28,8 @@ const ExpandMore = styled((props) => {
 
 export default function RecipeReviewCard({
     values,
+    collapseContent,
+    maxWidth = 345,
 }) {
     const [expanded, setExpanded] = React.useState(false);
 
@@ -36,7 +38,7 @@ export default function RecipeReviewCard({
     };
 
     return (
-        <Card sx={{ maxWidth: 345 }}>
+        <Card sx={{ maxWidth: maxWidth }}>
             <CardHeader
                 avatar={
                     <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
@@ -63,11 +65,9 @@ export default function RecipeReviewCard({
             <CardContent>
                 <Typography variant="body2" color="text.secondary">
                     {values[3]}
-                    {/* This impressive paella is a perfect party dish and a fun meal to cook
-                    together with your guests. Add 1 cup of frozen peas along with the mussels,
-                    if you like. */}
                 </Typography>
             </CardContent>
+
             <CardActions disableSpacing>
                 <IconButton aria-label="add to favorites">
                     <FavoriteIcon />
@@ -75,6 +75,7 @@ export default function RecipeReviewCard({
                 <IconButton aria-label="share">
                     <ShareIcon />
                 </IconButton>
+
                 <ExpandMore
                     expand={expanded}
                     onClick={handleExpandClick}
@@ -84,9 +85,11 @@ export default function RecipeReviewCard({
                     <ExpandMoreIcon />
                 </ExpandMore>
             </CardActions>
+
             <Collapse in={expanded} timeout="auto" unmountOnExit>
                 <CardContent>
-                    <Typography paragraph>Method:</Typography>
+                    {collapseContent}
+                    {/* <Typography paragraph>Method:</Typography>
                     <Typography paragraph>
                         Heat 1/2 cup of the broth in a pot until simmering, add saffron and set
                         aside for 10 minutes.
@@ -110,7 +113,7 @@ export default function RecipeReviewCard({
                     </Typography>
                     <Typography>
                         Set aside off of the heat to let rest for 10 minutes, and then serve.
-                    </Typography>
+                    </Typography> */}
                 </CardContent>
             </Collapse>
         </Card>

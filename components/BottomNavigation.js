@@ -1,46 +1,65 @@
 import * as React from 'react';
 import BottomNavigation from '@mui/material/BottomNavigation';
 import BottomNavigationAction from '@mui/material/BottomNavigationAction';
-import FolderIcon from '@mui/icons-material/Folder';
-import RestoreIcon from '@mui/icons-material/Restore';
-import FavoriteIcon from '@mui/icons-material/Favorite';
-import LocationOnIcon from '@mui/icons-material/LocationOn';
 import Paper from '@mui/material/Paper';
-import Link from 'next/link';
-
+import AssignmentTurnedInRoundedIcon from '@mui/icons-material/AssignmentTurnedInRounded';
+import HailRoundedIcon from '@mui/icons-material/HailRounded';
+import AccountCircleRoundedIcon from '@mui/icons-material/AccountCircleRounded';
+import { useRouter } from 'next/router';
 
 
 export default function LabelBottomNavigation({
     navItemsProp,
 }) {
-    const [value, setValue] = React.useState('recents');
+    let navItems = [
+        { label: 'products', value: 'products', icon: <HailRoundedIcon /> },
+        { label: 'customers', value: 'customers', icon: <HailRoundedIcon /> },
+        { label: 'projects', value: 'projects', icon: <AssignmentTurnedInRoundedIcon /> },
+        { label: 'profile', value: 'profile', icon: <AccountCircleRoundedIcon /> },
+    ];
+    const router = useRouter();
+    console.log('ROUTER PATHNAME', router.pathname)
+    let calcNav = navItems
+        .filter(
+            ({ value: v }) => (
+                new RegExp(v, 'i').test(router.pathname)
+            )
+            [0]
+        );
+
+    let calcNavValue = calcNav && typeof calcNav !== 'undefined'
+        ? calcNav.value : undefined
+
+    const [value, setValue] = React.useState(calcNavValue);
 
     const handleChange = (event, newValue) => {
         setValue(newValue);
     };
-    let navItems = [
-        { label: 'customers', value: 'customers', icon: <RestoreIcon /> },
-        { label: 'projects', value: 'projects', icon: <FavoriteIcon /> },
-        { label: 'profile', value: 'profile', icon: <LocationOnIcon /> },
-    ]
+
     return (
         <Paper
-            sx={{ position: 'fixed', bottom: 0, left: 0, right: 0 }} elevation={3}
+            sx={{
+                position: 'fixed',
+                bottom: 0,
+                left: 0,
+                right: 0
+            }}
+            elevation={3}
         >
-            <BottomNavigation sx={{ width: 500 }} value={value} onChange={handleChange}>
+            <BottomNavigation
+                sx={{ width: '100%' }}
+                value={value}
+                onChange={handleChange}>
                 {
                     navItems.map(nvitm => (
-                        <Link key={'nav_link' + nvitm.value} href={nvitm.value}>
-                            <a href={nvitm.value}>
 
-                                <BottomNavigationAction
-                                    key={nvitm.label + 'nvaitm'}
-                                    label={nvitm.label}//"Recents"
-                                    value={nvitm.value}//"recents"
-                                    icon={nvitm.icon}//<RestoreIcon />}
-                                />
-                            </a>
-                        </Link>
+                        <BottomNavigationAction
+                            href={'/' + nvitm.value}
+                            key={nvitm.label + 'nvaitm'}
+                            label={nvitm.label}
+                            value={nvitm.value}
+                            icon={nvitm.icon}
+                        />
                     ))
                 }
             </BottomNavigation>
