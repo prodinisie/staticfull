@@ -1,15 +1,7 @@
 import Head from "next/head";
-import Footer from "@components/Footer";
-// import Link from "next/link";
-// import Chip from '@mui/material/Chip';
-// import Stack from '@mui/material/Stack';
+// import Footer from "@components/Footer";
+import Dashboard from "@components/dashboard";
 
-
-// const links = [
-//   'customers',
-//   'projects',
-//   'profile',
-// ];
 
 export default function Home() {
   return (
@@ -17,32 +9,17 @@ export default function Home() {
       <Head>
         <title>PIM STATIC</title>
         <link rel="icon" href="/favicon.ico" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin />
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap" rel="stylesheet" />
       </Head>
       <main>
         <h1>
-          PIM STATIC
+          DASHBOARD
         </h1>
-        {/* <>
-          {
-            links.map((linky, idx) => {
-              let d = {
-                id: idx,
-                name: linky,
-              };
-              return (
-                <>
-                  <Stack direction="row" spacing={1}>
-                    <Link href={'/' + linky} >
-                      <Chip key={d.id} label={d.name} />
-                    </Link>
-                  </Stack>
-                </>
-              )
-            })
-          }
-        </> */}
+        <Dashboard />
       </main>
-      <Footer />
+      {/* <Footer /> */}
     </div >
   );
 }

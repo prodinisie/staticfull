@@ -74,12 +74,12 @@ export default function Page({ data }) {
 
 const styles = {
     container: {
-        position: 'fixed',
+        // position: 'fixed',
         width: '100vw',
         height: '100vh',
-        top: '0px',
+        // top: '0px',
         left: '0px',
-        backgroundColor: 'azure',
+        // backgroundColor: 'azure',
         overflowY: 'scroll',
     },
     subContainer: {

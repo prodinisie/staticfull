@@ -1,24 +1,26 @@
 import * as React from 'react';
+import { useRouter } from 'next/router';
 import BottomNavigation from '@mui/material/BottomNavigation';
 import BottomNavigationAction from '@mui/material/BottomNavigationAction';
 import Paper from '@mui/material/Paper';
 import AssignmentTurnedInRoundedIcon from '@mui/icons-material/AssignmentTurnedInRounded';
 import HailRoundedIcon from '@mui/icons-material/HailRounded';
 import AccountCircleRoundedIcon from '@mui/icons-material/AccountCircleRounded';
-import { useRouter } from 'next/router';
-
+import RoofingRoundedIcon from '@mui/icons-material/RoofingRounded';
+import QrCodeIcon from '@mui/icons-material/QrCode';
 
 export default function LabelBottomNavigation({
     navItemsProp,
 }) {
     let navItems = [
-        { label: 'products', value: 'products', icon: <HailRoundedIcon /> },
-        { label: 'customers', value: 'customers', icon: <HailRoundedIcon /> },
+        { label: 'home', value: '', icon: <RoofingRoundedIcon /> },
         { label: 'projects', value: 'projects', icon: <AssignmentTurnedInRoundedIcon /> },
+        { label: 'customers', value: 'customers', icon: <HailRoundedIcon /> },
+        { label: 'products', value: 'products', icon: <QrCodeIcon /> },
         { label: 'profile', value: 'profile', icon: <AccountCircleRoundedIcon /> },
     ];
     const router = useRouter();
-    console.log('ROUTER PATHNAME', router.pathname)
+
     let calcNav = navItems
         .filter(
             ({ value: v }) => (
@@ -56,7 +58,7 @@ export default function LabelBottomNavigation({
                         <BottomNavigationAction
                             href={'/' + nvitm.value}
                             key={nvitm.label + 'nvaitm'}
-                            label={nvitm.label}
+                            label={nvitm.label[0].toUpperCase() + nvitm.label.slice(1)}
                             value={nvitm.value}
                             icon={nvitm.icon}
                         />
