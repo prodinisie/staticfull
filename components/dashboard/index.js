@@ -11,9 +11,10 @@ import TotalGeneric from './total-generic';
 
 export {
     Dashboard as default,
-    coolors, TotalGeneric,
-    // TotalProjects,
+    coolors,
+    TotalGeneric,
     OrdersLastThirty,
+    // TotalProjects,
     // TotalCampaigns,
     //  TotalProducts
 };
@@ -30,7 +31,57 @@ const Dashboard = ({
         {
             disabled: false,
             name: 'orders-last-thirty',
-            component: props => <OrdersLastThirty iconColor={coolors[1].hex} {...props} />
+            component: props => <OrdersLastThirty iconColor={coolors[1].hex} {...props} />,
+            sizes: {
+                xs: 4,
+                md: 4,
+                lg: 4,
+                xl: 4
+            }
+        },
+        {
+            disabled: false,
+            name: 'orders-last-thirty',
+            component: props => <OrdersLastThirty iconColor={coolors[1].hex} {...props} />,
+            sizes: {
+                xs: 3,
+                md: 3,
+                lg: 3,
+                xl: 3
+            }
+        },
+        {
+            disabled: false,
+            name: 'orders-last-thirty',
+            component: props => <OrdersLastThirty iconColor={coolors[1].hex} {...props} />,
+            sizes: {
+                xs: 5,
+                md: 5,
+                lg: 5,
+                xl: 5
+            }
+        },
+        {
+            disabled: false,
+            name: 'orders-last-thirty',
+            component: props => <OrdersLastThirty iconColor={coolors[1].hex} {...props} />,
+            sizes: {
+                xs: 6,
+                md: 6,
+                lg: 6,
+                xl: 6
+            }
+        },
+        {
+            disabled: false,
+            name: 'orders-last-thirty',
+            component: props => <OrdersLastThirty iconColor={coolors[1].hex} {...props} />,
+            sizes: {
+                xs: 6,
+                md: 6,
+                lg: 6,
+                xl: 6
+            }
         },
         // {
         //     disabled: false,
@@ -76,10 +127,11 @@ const Dashboard = ({
                 </title>
             </Head>
             <Box
-                component="main"
+                // component="main"
                 sx={{
                     flexGrow: 1,
-                    py: 4
+                    py: 4,
+                    width: '100%',
                 }}
             >
                 <Container maxWidth={false}>
@@ -89,6 +141,7 @@ const Dashboard = ({
                         spacing={3}
                     >
                         {props.children}
+
                         {sections.map(({
                             sizes,
                             disabled,

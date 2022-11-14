@@ -19,20 +19,22 @@ export default function LabelBottomNavigation({
         { label: 'products', value: 'products', icon: <QrCodeIcon /> },
         { label: 'profile', value: 'profile', icon: <AccountCircleRoundedIcon /> },
     ];
-    const router = useRouter();
+    const [value, setValue] = React.useState(null);
 
-    let calcNav = navItems
-        .filter(
-            ({ value: v }) => (
-                new RegExp(v, 'i').test(router.pathname)
-            )
-            [0]
-        );
-
-    let calcNavValue = calcNav && typeof calcNav !== 'undefined'
-        ? calcNav.value : undefined
-
-    const [value, setValue] = React.useState(calcNavValue);
+    React.useEffect(() => {
+        let calcNav = navItems
+            /* HOME, "/" , WILL MATCH ALL PATHS SO REMOVE IT */
+            .slice(1)
+            .filter(({ value: v }) => {
+                return (
+                    new RegExp(v, 'i')
+                        .test(window.location.href)
+                )
+            })[0];
+        let calcNavValue = calcNav && typeof calcNav !== 'undefined'
+            ? calcNav.value : undefined;
+        setValue(calcNavValue)
+    }, [])
 
     const handleChange = (event, newValue) => {
         setValue(newValue);

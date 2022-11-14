@@ -4,7 +4,6 @@ import { useRouter } from 'next/router';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import BreadCrumbs from '@components/BreadCrumbs';
 import styles from '../styles/globals.css';
-import { Grid } from '@mui/material';
 const queryClient = new QueryClient();
 
 
@@ -34,19 +33,17 @@ export default function CustomApp({ Component, pageProps }) {
       className={styles.main}
     >
       <QueryClientProvider client={queryClient}>
-        <br />
         <div
           style={{
+            zIndex: 999999,
             paddingLeft: '1rem',
+            paddingTop: '1rem',
           }}
         >
-
           <BreadCrumbs
             crumbs={crumbs}
           />
         </div>
-        <br />
-        <br />
         <Component {...pageProps} />
         <LabelBottomNavigation />
       </QueryClientProvider>
